@@ -1,12 +1,12 @@
 {
   "name": "nativescript-3dtouch",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Use 3D Touch to create quick actions for your home screen icon.",
   "main": "3dtouch.js",
   "nativescript": {
     "platforms": {
-      "android": "2.0.0",
-      "ios": "2.0.0"
+      "android": "1.7.0",
+      "ios": "1.7.0"
     }
   },
   "scripts": {
