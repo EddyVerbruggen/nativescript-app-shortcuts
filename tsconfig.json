@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "removeComments": true,
+        "experimentalDecorators": true,
+        "sourceMap": true
+    },
+    "files": [
+        "node_modules/tns-platform-declarations/android17.d.ts",
+        "node_modules/tns-platform-declarations/ios.d.ts",
+        "demo/node_modules/tns-core-modules/tns-core-modules.d.ts",
+        "3dtouch.common.ts",
+        "3dtouch.android.ts",
+        "3dtouch.ios.ts"
+    ],
+    "compileOnSave": false
+}
