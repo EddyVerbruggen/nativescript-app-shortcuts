@@ -9,7 +9,6 @@
     "files": [
       "node_modules/tns-platform-declarations/ios.d.ts",
       "demo/node_modules/tns-core-modules/tns-core-modules.d.ts",
-      "3dtouch.common.ts",
       "3dtouch.android.ts",
       "3dtouch.ios.ts"
     ],

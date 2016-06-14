@@ -1,10 +1,9 @@
-import {Common} from "./3dtouch.common";
 import {ios as iOSUtils} from "utils/utils";
 import {ios as iOSApplication} from "application";
 
 declare var UIForceTouchCapabilityAvailable, UIApplicationShortcutIcon, UIApplicationShortcutItem;
 
-export class ThreeDeeTouch extends Common {
+export class ThreeDeeTouch {
 
   // caching for efficiency
   private availability = null;
@@ -30,8 +29,6 @@ export class ThreeDeeTouch extends Common {
     });
   }
 
-  // TODO smth like Array<QuickAction> would be nice, and QuickAction has an iconType:UIApplicationShortcutIconType property 
-  // public configureQuickActions(actions: any): Promise<any> {
   public configureQuickActions(actions: Array<QuickAction>): Promise<any> {
     return new Promise((resolve, reject) => {
       if (!this.avail()) {
