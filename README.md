@@ -5,6 +5,10 @@
 * add them either statically or dynamically,
 * use those to optionally deeplink inside your app.
 
+
+<img src="screenshots/iOS screenshot - 4 quick actions.PNG" width="360"/>
+
+
 ### Supported platforms
 * iPhone 6s / 6s Plus or newer, running iOS 9 or newer
 * A simulator running the above, with a 3D Touch enabled touchpad
