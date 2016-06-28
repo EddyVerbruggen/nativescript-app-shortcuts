@@ -11,4 +11,8 @@ export class ThreeDeeTouch {
         reject("3D Touch not available");
     });
   }
+
+  public setQuickActionCallback(callback: Function) {
+    // noop
+  }
 }

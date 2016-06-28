@@ -29,6 +29,8 @@ tns install typescript
 ## API
 Want to dive in quickly? Check out [the demo app](demo)! Otherwise, continue reading.
 
+You can run the demo app from the root of the project by typing `npm run demo.ios.device` (see [`package.json`](package.json) for other commands).
+
 ### `available`
 Check whether or not the device is capable.
 Android devices will also report `false`, so you can use this cross platform.
@@ -127,52 +129,40 @@ threeDeeTouch.configureQuickActions([
 ```
 
 ## Capturing the Action
-When a home icon is pressed, your app launches. You probably want to perform different actions based on the home icon action that was picked (like routing to a different page), so you need a way to capture the event.
+When a home icon is pressed, your app launches. You probably want to perform different actions based on the home icon action
+that was picked (like routing to a different page), so you need a way to capture the event.
 
-To this end we need to extend `app.js` or `app.ts`, so in case of `app.ts` change it from something like this (in `app.js` you'd paste the exact same code):
+To this end we need to extend `app.js` or `app.ts` and import he plugin, then call the `setQuickActionCallback` function.
+So in case of `app.ts` change it from something like this:
 
 ```js
-var application = require("application");
+import * as application from "application";
 application.start({ moduleName: "main-page" });
 ```
 
 To this:
 
 ```js
-var application = require("application");
+import * as application from "application";
 
+// import the plugin
+import {ThreeDeeTouch} from "nativescript-3dtouch";
 
-// START 3DTouch wiring
-if (application.ios) {
-  var MyDelegate = (function (_super) {
-      __extends(MyDelegate, _super);
-      function MyDelegate() {
-          _super.apply(this, arguments);
-      }
-      MyDelegate.prototype.applicationPerformActionForShortcutItemCompletionHandler = function (application, shortcutItem, completionHandler) {
-          console.log("app was launched by shortcut type '" + shortcutItem.type + "' with title '" + shortcutItem.localizedTitle + "'");
-          // this is where you handle any specific case for the shortcut
-          if (shortcutItem.type === "beer") {
-            // this is an example of 'deeplinking' through a shortcut
-            var frames = require("ui/frame");
-            frames.topmost().navigate("beer-page");
-          } else {
-            // .. any other shortcut handling
-          }
-      };
-      MyDelegate.ObjCProtocols = [UIApplicationDelegate];
-      return MyDelegate;
-  })(UIResponder);
-  application.ios.delegate = MyDelegate;
-}
-// END 3DTouch wiring
-
+// instantiate it and call setQuickActionCallback
+new ThreeDeeTouch().setQuickActionCallback(function(shortcutItem) {
+    console.log("app was launched by shortcut type '" + shortcutItem.type + "' with title '" + shortcutItem.localizedTitle + "'");
+    // this is where you handle any specific case for the shortcut
+    if (shortcutItem.type === "beer") {
+        // this is an example of 'deeplinking' through a shortcut
+        let frames = require("ui/frame");
+        frames.topmost().navigate("beer-page");
+    } else {
+        // .. any other shortcut handling
+    }
+});
 
 application.start({ moduleName: "main-page" });
 ```
-
-Don't get overwhelmed by that code, just look at that `if (shortcutItem.type === "beer") {` line up there which compares the `type` that was picked with the `type` you configured before. In this case we're redirecting the app upon launch to the `beer-page` in case the `beer` `type` was triggered by the user.
-
 
 ## Configuring Static Actions
 With `configureQuickActions` you can configure dynamic actions,
