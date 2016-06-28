@@ -1,7 +1,38 @@
 import {ios as iOSUtils} from "utils/utils";
 import {ios as iOSApplication} from "application";
 
-declare var UIForceTouchCapabilityAvailable, UIApplicationShortcutIcon, UIApplicationShortcutItem;
+declare var UIForceTouchCapabilityAvailable, UIApplicationShortcutIcon, UIApplicationShortcutItem, __extends;
+
+let quickActionCallback: Function = null;
+let lastQuickAction: any = null;
+
+(function() {
+
+  let callback = function (application, shortcutItem, completionHandler) {
+    if (quickActionCallback !== null) {
+      quickActionCallback(shortcutItem);
+    } else {
+      lastQuickAction = shortcutItem;
+    }
+  };
+
+  if (iOSApplication.delegate !== undefined) {
+    // Play nice with other plugins by not completely ignoring anything already added to the appdelegate
+    iOSApplication.delegate.prototype.applicationPerformActionForShortcutItemCompletionHandler = callback;
+  } else {
+
+    let MyDelegate = (function (_super) {
+        __extends(MyDelegate, _super);
+        function MyDelegate() {
+            _super.apply(this, arguments);
+        }
+        MyDelegate.prototype.applicationPerformActionForShortcutItemCompletionHandler = callback;
+        (MyDelegate as any).ObjCProtocols = [UIApplicationDelegate];
+        return MyDelegate;
+    })(UIResponder);
+    iOSApplication.delegate = MyDelegate;
+  }
+})();
 
 export class ThreeDeeTouch {
 
@@ -27,6 +58,14 @@ export class ThreeDeeTouch {
     return new Promise((resolve, reject) => {
       resolve(this.avail());
     });
+  }
+
+  public setQuickActionCallback(callback: Function) {
+    quickActionCallback = callback;
+    if (lastQuickAction !== null) {
+      quickActionCallback(lastQuickAction);
+      lastQuickAction = null;
+    }
   }
 
   public configureQuickActions(actions: Array<QuickAction>): Promise<any> {
