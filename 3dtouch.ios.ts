@@ -1,9 +1,10 @@
 import {ios as iOSUtils} from "utils/utils";
 import {ios as iOSApplication} from "application";
+import {QuickAction, LaunchQuickAction} from "nativescript-3dtouch";
 
-declare var UIForceTouchCapabilityAvailable, UIApplicationShortcutIcon, UIApplicationShortcutItem, __extends;
+declare var UIApplicationDelegate, UIForceTouchCapabilityAvailable, UIApplicationShortcutIcon, UIApplicationShortcutItem, __extends;
 
-let quickActionCallback: Function = null;
+let quickActionCallback: (data: LaunchQuickAction) => void = null;
 let lastQuickAction: any = null;
 
 (function() {
@@ -60,7 +61,7 @@ export class ThreeDeeTouch {
     });
   }
 
-  public setQuickActionCallback(callback: Function) {
+  public setQuickActionCallback(callback: (data: LaunchQuickAction) => void) {
     quickActionCallback = callback;
     if (lastQuickAction !== null) {
       quickActionCallback(lastQuickAction);
@@ -100,29 +101,4 @@ export class ThreeDeeTouch {
       resolve();
     });
   }
-}
-
-export interface QuickAction {
-  /**
-   * Can be used in the onHomeIconPressed callback
-   */
-  type?: string;
-  /**
-   * The largest text that's displayed for the action
-   */
-  title: string;
-  /**
-   * Smaller text, shown below the 'title'
-   */
-  subtitle?: string;
-  /**
-   * One of the built-in iOS icons, like UIApplicationShortcutIconType.UIApplicationShortcutIconTypeCapturePhoto,
-   * full list here (Objective-C): https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationShortcutIcon_Class/#//apple_ref/c/tdef/UIApplicationShortcutIconType 
-   */
-  iconType?: string;
-  /**
-   * A custom image, resolves to app/App_Resources/iOS/<inconTemplate>(.png),
-   * use a transparent black and white png of 70*70 or 105*105 for easiest setup.
-   */
-  iconTemplate?: string;
 }

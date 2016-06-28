@@ -26,6 +26,13 @@ And do yourself a favor by adding TypeScript support to your nativeScript app:
 tns install typescript
 ```
 
+Then open `references.d.ts` in the root of your project and add this line
+to get autocompletion and type-checking for this plugin:
+
+```js
+/// <reference path="./node_modules/nativescript-3dtouch/3dtouch.d.ts" />
+```
+
 ## Demo app
 Want to dive in quickly? Check out [the demo app](demo)! Otherwise, continue reading.
 
