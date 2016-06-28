@@ -26,10 +26,12 @@ And do yourself a favor by adding TypeScript support to your nativeScript app:
 tns install typescript
 ```
 
-## API
+## Demo app
 Want to dive in quickly? Check out [the demo app](demo)! Otherwise, continue reading.
 
 You can run the demo app from the root of the project by typing `npm run demo.ios.device` (see [`package.json`](package.json) for other commands).
+
+## API
 
 ### `available`
 Check whether or not the device is capable.
