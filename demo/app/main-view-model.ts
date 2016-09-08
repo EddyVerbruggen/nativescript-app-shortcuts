@@ -9,7 +9,7 @@ export class HelloWorldModel extends Observable {
   constructor() {
     super();
     this.threeDeeTouch = new ThreeDeeTouch();
-}
+  }
 
   public isAvailable() {
     this.threeDeeTouch.available().then((avail) => {
