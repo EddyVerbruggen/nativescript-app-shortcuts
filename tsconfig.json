@@ -4,18 +4,17 @@
         "module": "commonjs",
         "removeComments": true,
         "experimentalDecorators": true,
-        "declaration": true,
-        "sourceMap": false
+        "noEmitHelpers": true,
+        "declaration": true
     },
     "files": [
-        "node_modules/tns-platform-declarations/ios.d.ts",
-        "3dtouch.d.ts",
-        "3dtouch.android.ts",
-        "3dtouch.ios.ts"
-    ],
-     "exclude": [
-        "node_modules",
-        "platforms"
+      "node_modules/tns-core-modules/tns-core-modules.d.ts",
+      "node_modules/tns-platform-declarations/tns-core-modules/android17.d.ts",
+      "node_modules/tns-platform-declarations/tns-core-modules/ios.d.ts",
+      "node_modules/tns-platform-declarations/tns-core-modules/org.nativescript.widgets.d.ts",
+      "3dtouch.d.ts",
+      "3dtouch.android.ts",
+      "3dtouch.ios.ts"
     ],
     "compileOnSave": false
 }
