@@ -1,6 +1,6 @@
 {
   "nativescript": {
-    "id": "org.nativescript.demo",
+    "id": "org.nativescript.3DTouch",
     "tns-ios": {
       "version": "2.2.1"
     },

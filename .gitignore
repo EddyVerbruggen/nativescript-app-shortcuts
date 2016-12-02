@@ -1,3 +1,5 @@
+.vscode
+.idea
 *.js.map
 *.log
 demo/app/*.js
