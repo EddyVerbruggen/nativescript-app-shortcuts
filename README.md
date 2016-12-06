@@ -226,6 +226,3 @@ This is the same as the `type` param of `configureQuickActions`, so it's what yo
 
 ## Changelog
 * 1.0.0  Initial release
-
-## Future work
-* Investigate Peek & Pop
