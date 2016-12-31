@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "nativescript-3dtouch": "file:..",
-    "tns-core-modules": "^2.4.1"
+    "tns-core-modules": "^2.4.0"
   },
   "devDependencies": {
     "babel-traverse": "6.12.0",
