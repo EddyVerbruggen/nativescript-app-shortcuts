@@ -1,11 +1,12 @@
 .vscode
 .idea
 demo/
+screenshots/
 *.jpg
 *.png
 *.log
 *.map
 *.ts
 !*.d.ts
-gen
-hooks
+gen/
+hooks/

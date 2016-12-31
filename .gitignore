@@ -7,6 +7,6 @@ demo/*.d.ts
 demo/hooks
 demo/platforms
 demo/node_modules
-node_modules
-gen
-hooks
+node_modules/
+gen/
+hooks/
