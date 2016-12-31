@@ -1,7 +1,7 @@
 import {Observable} from "data/observable";
 import {ThreeDeeTouch} from "nativescript-3dtouch";
 
-declare var UIApplicationShortcutIconType;
+declare const UIApplicationShortcutIconType;
 
 export class HelloWorldModel extends Observable {
   private threeDeeTouch: ThreeDeeTouch;

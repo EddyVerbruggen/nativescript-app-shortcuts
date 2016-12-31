@@ -7,3 +7,5 @@ demo/
 *.map
 *.ts
 !*.d.ts
+gen
+hooks

@@ -4,9 +4,9 @@
       <TabViewItem title="About">
         <TabViewItem.view>
           <ScrollView>
-            <StackLayout cssClass="tab-content">
+            <StackLayout class="tab-content">
               <Image margin="10" src="~/res/telerik-logo.png" />
-              <Label text="3D Touch plugin demo" cssClass="title"/>
+              <Label text="3D Touch plugin demo" class="title"/>
               <Label text="Add static and/or dynamic home icon actions. Note that iOS allows max 4 actions per icon." textWrap="true"/>
             </StackLayout>
           </ScrollView>
@@ -15,13 +15,13 @@
       <TabViewItem title="Demo">
         <TabViewItem.view>
           <ScrollView>
-            <GridLayout columns="*, *" rows="auto, auto, auto, auto" horizontalAlignment="stretch" cssClass="tab-content">
-              <Label row="0" colSpan="2" text="Check hardware capability of 3D Touch." cssClass="subtitle" textWrap="true" />
-              <Button row="1" colSpan="2" text="3D Touch available?" tap="{{ isAvailable }}" cssClass="button button-available" />
+            <GridLayout columns="*, *" rows="auto, auto, auto, auto" horizontalAlignment="stretch" class="tab-content">
+              <Label row="0" colSpan="2" text="Check hardware capability of 3D Touch." class="subtitle" textWrap="true" />
+              <Button row="1" colSpan="2" text="3D Touch available?" tap="{{ isAvailable }}" class="button button-available" />
 
-              <Label row="2" colSpan="2" text="Configure Quick Actions for your Home Screen App icon. This demo has 2 actions configured in the .plist file, so you can add max 2 dynamic ones as well." cssClass="subtitle" textWrap="true" />
-              <Button row="3" col="0" text="add 1 action" tap="{{ configure1QuickAction }}" cssClass="button" />
-              <Button row="3" col="1" text="add 2 actions" tap="{{ configure2QuickActions }}" cssClass="button" />
+              <Label row="2" colSpan="2" text="Configure Quick Actions for your Home Screen App icon. This demo has 2 actions configured in the .plist file, so you can add max 2 dynamic ones as well." class="subtitle" textWrap="true" />
+              <Button row="3" col="0" text="add 1 action" tap="{{ configure1QuickAction }}" class="button" />
+              <Button row="3" col="1" text="add 2 actions" tap="{{ configure2QuickActions }}" class="button" />
             </GridLayout>
           </ScrollView>
         </TabViewItem.view>

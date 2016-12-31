@@ -17,3 +17,4 @@ var ThreeDeeTouch = (function () {
     return ThreeDeeTouch;
 }());
 exports.ThreeDeeTouch = ThreeDeeTouch;
+//# sourceMappingURL=3dtouch.android.js.map

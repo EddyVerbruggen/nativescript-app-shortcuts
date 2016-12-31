@@ -17,7 +17,7 @@ declare module "nativescript-3dtouch" {
          * One of the built-in iOS icons, like UIApplicationShortcutIconType.UIApplicationShortcutIconTypeCapturePhoto,
          * full list here (Objective-C): https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationShortcutIcon_Class/#//apple_ref/c/tdef/UIApplicationShortcutIconType 
          */
-        iconType?: string;
+        iconType?: any /* UIApplicationShortcutIconType */;
         /**
          * A custom image, resolves to app/App_Resources/iOS/<inconTemplate>(.png),
          * use a transparent black and white png of 70*70 or 105*105 for easiest setup.
