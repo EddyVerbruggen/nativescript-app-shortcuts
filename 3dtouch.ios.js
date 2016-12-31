@@ -16,7 +16,7 @@ var lastQuickAction = null;
         application_1.ios.delegate.prototype.applicationPerformActionForShortcutItemCompletionHandler = callback;
     }
     else {
-        var MyDelegate = (function (_super) {
+        application_1.ios.delegate = (function (_super) {
             __extends(MyDelegate, _super);
             function MyDelegate() {
                 _super.apply(this, arguments);
@@ -25,7 +25,6 @@ var lastQuickAction = null;
             MyDelegate.ObjCProtocols = [UIApplicationDelegate];
             return MyDelegate;
         })(UIResponder);
-        application_1.ios.delegate = MyDelegate;
     }
 })();
 var ThreeDeeTouch = (function () {
@@ -36,7 +35,7 @@ var ThreeDeeTouch = (function () {
         if (this.availability === null) {
             var avail = false;
             if (utils_1.ios.MajorVersion >= 9) {
-                avail = UIForceTouchCapabilityAvailable === application_1.ios.nativeApp.keyWindow.rootViewController.traitCollection.forceTouchCapability;
+                avail = UIForceTouchCapability.Available === application_1.ios.nativeApp.keyWindow.rootViewController.traitCollection.forceTouchCapability;
             }
             this.availability = avail;
         }
@@ -80,3 +79,4 @@ var ThreeDeeTouch = (function () {
     return ThreeDeeTouch;
 }());
 exports.ThreeDeeTouch = ThreeDeeTouch;
+//# sourceMappingURL=3dtouch.ios.js.map

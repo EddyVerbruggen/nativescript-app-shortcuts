@@ -1,3 +1,5 @@
+import {LaunchQuickAction} from "nativescript-3dtouch";
+
 export class ThreeDeeTouch {
 
   public available(avail: boolean): Promise<boolean> {
@@ -12,7 +14,7 @@ export class ThreeDeeTouch {
     });
   }
 
-  public setQuickActionCallback(callback: Function) {
+  public setQuickActionCallback(callback: (data: LaunchQuickAction) => void) {
     // noop
   }
 }

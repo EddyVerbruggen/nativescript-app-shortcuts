@@ -2,7 +2,7 @@ import {ios as iOSUtils} from "utils/utils";
 import {ios as iOSApplication} from "application";
 import {QuickAction, LaunchQuickAction} from "nativescript-3dtouch";
 
-declare var UIApplicationDelegate, UIForceTouchCapabilityAvailable, UIApplicationShortcutIcon, UIApplicationShortcutItem, __extends;
+declare const UIApplicationDelegate, UIResponder, UIForceTouchCapability, UIApplicationShortcutIcon, UIApplicationShortcutItem, __extends;
 
 let quickActionCallback: (data: LaunchQuickAction) => void = null;
 let lastQuickAction: any = null;
@@ -22,16 +22,16 @@ let lastQuickAction: any = null;
     iOSApplication.delegate.prototype.applicationPerformActionForShortcutItemCompletionHandler = callback;
   } else {
 
-    let MyDelegate = (function (_super) {
-        __extends(MyDelegate, _super);
-        function MyDelegate() {
-            _super.apply(this, arguments);
-        }
-        MyDelegate.prototype.applicationPerformActionForShortcutItemCompletionHandler = callback;
-        (MyDelegate as any).ObjCProtocols = [UIApplicationDelegate];
-        return MyDelegate;
+    iOSApplication.delegate = (function (_super) {
+      __extends(MyDelegate, _super);
+      function MyDelegate() {
+        _super.apply(this, arguments);
+      }
+
+      MyDelegate.prototype.applicationPerformActionForShortcutItemCompletionHandler = callback;
+      (MyDelegate as any).ObjCProtocols = [UIApplicationDelegate];
+      return MyDelegate;
     })(UIResponder);
-    iOSApplication.delegate = MyDelegate;
   }
 })();
 
@@ -47,7 +47,7 @@ export class ThreeDeeTouch {
       // iOS 9 added 3D Touch capability
       if (iOSUtils.MajorVersion >= 9) {
         // .. but not all devices running iOS 9 support it
-        avail = UIForceTouchCapabilityAvailable === iOSApplication.nativeApp.keyWindow.rootViewController.traitCollection.forceTouchCapability;
+        avail = UIForceTouchCapability.Available === iOSApplication.nativeApp.keyWindow.rootViewController.traitCollection.forceTouchCapability;
       }
 
       this.availability = avail;
