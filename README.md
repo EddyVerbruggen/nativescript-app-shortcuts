@@ -232,7 +232,3 @@ You can guess what those do, right? Only the title is mandatory.
 #### UIApplicationShortcutItemType
 
 This is the same as the `type` param of `configureQuickActions`, so it's what you'll receive in the callback you may have configured in `app.js` / `app.ts`  as `payload.type`. Just do something cool with that info (like routing to a specific page and loading some content).
-
-
-## Changelog
-* 1.0.0  Initial release
