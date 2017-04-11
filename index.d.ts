@@ -15,7 +15,7 @@ declare module "nativescript-3dtouch" {
         subtitle?: string;
         /**
          * One of the built-in iOS icons, like UIApplicationShortcutIconType.UIApplicationShortcutIconTypeCapturePhoto,
-         * full list here (Objective-C): https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationShortcutIcon_Class/#//apple_ref/c/tdef/UIApplicationShortcutIconType 
+         * full list here (Objective-C): https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationShortcutIcon_Class/#//apple_ref/c/tdef/UIApplicationShortcutIconType
          */
         iconType?: any /* UIApplicationShortcutIconType */;
         /**
@@ -27,7 +27,7 @@ declare module "nativescript-3dtouch" {
 
     interface LaunchQuickAction {
         /**
-         * The type you previously passed in as QuickAction.type 
+         * The type you previously passed in as QuickAction.type
          */
         type?: string;
         /**

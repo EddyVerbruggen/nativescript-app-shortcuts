@@ -1,12 +1,9 @@
-.vscode
 .idea
+.vscode
 demo/
 screenshots/
-*.jpg
-*.png
 *.log
 *.map
 *.ts
 !*.d.ts
-gen/
-hooks/
+tslint.json

@@ -1,5 +1,15 @@
 # NativeScript 3D Touch plugin
 
+[![NPM version][npm-image]][npm-url]
+[![Downloads][downloads-image]][npm-url]
+[![Twitter Follow][twitter-image]][twitter-url]
+
+[npm-image]:http://img.shields.io/npm/v/nativescript-3dtouch.svg
+[npm-url]:https://npmjs.org/package/nativescript-3dtouch
+[downloads-image]:http://img.shields.io/npm/dm/nativescript-3dtouch.svg
+[twitter-image]:https://img.shields.io/twitter/follow/eddyverbruggen.svg?style=social&label=Follow%20me
+[twitter-url]:https://twitter.com/eddyverbruggen
+
 ### Use when you want to
 * add those fancy home icon actions to your iPhone app,
 * add them either statically or dynamically,
