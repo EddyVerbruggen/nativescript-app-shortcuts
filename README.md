@@ -110,7 +110,7 @@ threeDeeTouch.configureQuickActions([
     type: "capturePhoto",
     title: "Snag a pic",
     subtitle: "You have 23 snags left",
-    iconType: UIApplicationShortcutIconType.UIApplicationShortcutIconTypeCapturePhoto
+    iconType: UIApplicationShortcutIconTypeCapturePhoto
   },
   {
     type: "beer",
@@ -118,7 +118,7 @@ threeDeeTouch.configureQuickActions([
     subtitle: "Check in & share",
     iconTemplate: "Beer"
   }
-]).then(function() {
+]).then(function () {
   alert("Added 2 actions, close the app and apply pressure to the app icon to check it out!");
 }, function(errorMessage) {
   alert(errorMessage);
@@ -132,7 +132,7 @@ threeDeeTouch.configureQuickActions([
     type: "capturePhoto",
     title: "Snag a pic",
     subtitle: "You have 23 snags left",
-    iconType: UIApplicationShortcutIconType.UIApplicationShortcutIconTypeCapturePhoto
+    iconType: UIApplicationShortcutIconType.CapturePhoto
   },
   {
     type: "beer",
@@ -152,21 +152,21 @@ When a home icon is pressed, your app launches. You probably want to perform dif
 that was picked (like routing to a different page), so you need a way to capture the event.
 
 ### NativeScript with XML
-In a non-Angular NativeScript app we need to extend `app.js` or `app.ts` and import he plugin,
+In a non-Angular NativeScript app we need to extend `app.js` or `app.ts` and import the plugin,
 then call the `setQuickActionCallback` function. So in case of `app.ts` change it from something like this:
 
-```js
+```typescript
 import * as application from "application";
 application.start({ moduleName: "main-page" });
 ```
 
 To this:
 
-```js
+```typescript
 import * as application from "application";
 
 // import the plugin
-import {ThreeDeeTouch} from "nativescript-3dtouch";
+import { ThreeDeeTouch } from "nativescript-3dtouch";
 
 // instantiate it and call setQuickActionCallback
 new ThreeDeeTouch().setQuickActionCallback(function(shortcutItem) {
