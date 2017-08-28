@@ -74,7 +74,7 @@ threeDeeTouch.available().then(
 ```
 
 ##### TypeScript
-```js
+```typescript
 // require the plugin
 import {ThreeDeeTouch} from "nativescript-3dtouch";
 
@@ -126,7 +126,7 @@ threeDeeTouch.configureQuickActions([
 ```
 
 ##### TypeScript
-```js
+```typescript
 threeDeeTouch.configureQuickActions([
   {
     type: "capturePhoto",
@@ -151,8 +151,9 @@ threeDeeTouch.configureQuickActions([
 When a home icon is pressed, your app launches. You probably want to perform different actions based on the home icon action
 that was picked (like routing to a different page), so you need a way to capture the event.
 
-To this end we need to extend `app.js` or `app.ts` and import he plugin, then call the `setQuickActionCallback` function.
-So in case of `app.ts` change it from something like this:
+### NativeScript with XML
+In a non-Angular NativeScript app we need to extend `app.js` or `app.ts` and import he plugin,
+then call the `setQuickActionCallback` function. So in case of `app.ts` change it from something like this:
 
 ```js
 import * as application from "application";
@@ -181,6 +182,44 @@ new ThreeDeeTouch().setQuickActionCallback(function(shortcutItem) {
 });
 
 application.start({ moduleName: "main-page" });
+```
+
+### NativeScript with Angular
+If you're using Angular, the best place to add the handler is in `app.module.ts`,
+and use `NgZone` to help Angular knowing about the route change you're performing:
+
+```typescript
+import { NgZone } from "@angular/core";
+import { isIOS } from "tns-core-modules/platform";
+import { RouterExtensions } from "nativescript-angular";
+import { ThreeDeeTouch } from "nativescript-3dtouch";
+
+export class AppModule {
+  constructor(private routerExtensions: RouterExtensions,
+              private zone: NgZone) {
+
+    if (isIOS) {
+      new ThreeDeeTouch().setQuickActionCallback(shortcutItem => {
+        console.log(`The app was launched by shortcut type '${shortcutItem.type}' with title '${shortcutItem.localizedTitle}`);
+
+        // this is where you handle any specific case for the shortcut, based on its type
+        if (shortcutItem.type === "page1") {
+          this.deeplink("/page1");
+        } else if (shortcutItem.type === "page2") {
+          this.deeplink("/page2");
+        }
+      });
+    }
+  }
+
+  private deeplink(to: string): void {
+    this.zone.run(() => {
+      this.routerExtensions.navigate([to], {
+        animated: false
+      });
+    });
+  }
+}
 ```
 
 ## Configuring Static Actions
