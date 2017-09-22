@@ -1,5 +1,7 @@
 # NativeScript 3D Touch plugin
 
+> DEPRECATED: Android 7.1 added support for app shortcuts, so for sake of feature parity this plugin has been upgraded to support Android as well, which meant I thought it would be best to rename it. So please consider upgrading to [https://www.npmjs.com/package/nativescript-app-shortcuts](https://www.npmjs.com/package/nativescript-app-shortcuts).
+
 [![NPM version][npm-image]][npm-url]
 [![Downloads][downloads-image]][npm-url]
 [![Twitter Follow][twitter-image]][twitter-url]
