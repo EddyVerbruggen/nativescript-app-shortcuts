@@ -1,30 +1,32 @@
-import {Observable} from "data/observable";
-import {ThreeDeeTouch} from "nativescript-3dtouch";
+import { Observable } from "tns-core-modules/data/observable";
+import { AppShortcuts } from "nativescript-app-shortcuts";
+import { isIOS } from "tns-core-modules/platform";
 
 declare const UIApplicationShortcutIconType;
 
 export class HelloWorldModel extends Observable {
-  private threeDeeTouch: ThreeDeeTouch;
+  private appShortcuts: AppShortcuts;
 
   constructor() {
     super();
-    this.threeDeeTouch = new ThreeDeeTouch();
+    this.appShortcuts = new AppShortcuts();
   }
 
   public isAvailable() {
-    this.threeDeeTouch.available().then((avail) => {
+    this.appShortcuts.available().then((avail) => {
       alert("Available? " + avail);
     });
   }
 
   public configure1QuickAction() {
-    this.threeDeeTouch.configureQuickActions([
-        {
-          type: "capturePhoto", // optional, but can be used in the onHomeIconPressed callback
-          title: "Snag a pic", // mandatory
-          subtitle: "You have 18 snags left", // optional
-          iconType: UIApplicationShortcutIconType.UIApplicationShortcutIconTypeCapturePhoto // optional
-        }
+    this.appShortcuts.configureQuickActions([
+      {
+        type: "capturePhoto", // optional, but can be used in the onHomeIconPressed callback
+        title: "Snag a pic", // mandatory
+        subtitle: "You have 18 snags left", // optional
+        iconType: isIOS ? UIApplicationShortcutIconType.UIApplicationShortcutIconTypeCapturePhoto : null,
+        iconTemplate: "eye" // refers to an image in app/App_Resources
+      }
     ]).then(() => {
       alert("Added 1 action, close the app and apply pressure to the app icon to check it out!");
     }, (errorMessage) => {
@@ -33,19 +35,20 @@ export class HelloWorldModel extends Observable {
   }
 
   public configure2QuickActions() {
-    this.threeDeeTouch.configureQuickActions([
-        {
-          type: "capturePhoto", // optional, but can be used in the onHomeIconPressed callback
-          title: "Snag a pic", // mandatory
-          subtitle: "You have 23 snags left", // optional
-          iconType: UIApplicationShortcutIconType.UIApplicationShortcutIconTypeCapturePhoto // optional
-        },
-        {
-          type: "beer",
-          title: "Beer-tastic!",
-          subtitle: "Check in & share", // optional
-          iconTemplate: "Beer" // resolves to app/App_Resources/iOS/Beer(.png)
-        }
+    this.appShortcuts.configureQuickActions([
+      {
+        type: "capturePhoto", // optional, but can be used in the onHomeIconPressed callback
+        title: "Snag a pic", // mandatory
+        subtitle: "You have 8 snags left", // optional
+        iconType: isIOS ? UIApplicationShortcutIconType.UIApplicationShortcutIconTypeCapturePhoto : null,
+        iconTemplate: "eye" // refers to an image in app/App_Resources
+      },
+      {
+        type: "beer",
+        title: "Beer-tastic!",
+        subtitle: "Check in & share", // optional
+        iconTemplate: "beer" // refers to an image in app/App_Resources
+      }
     ]).then(() => {
       alert("Added 2 actions, close the app and apply pressure to the app icon to check it out!");
     }, (errorMessage) => {

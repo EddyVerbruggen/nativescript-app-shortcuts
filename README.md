@@ -1,54 +1,35 @@
-# NativeScript 3D Touch plugin
+# NativeScript Icon Shortcuts plugin
 
-> DEPRECATED: Android 7.1 added support for app shortcuts, so for sake of feature parity this plugin has been upgraded to support Android as well, which meant I thought it would be best to rename it. So please consider upgrading to [https://www.npmjs.com/package/nativescript-app-shortcuts](https://www.npmjs.com/package/nativescript-app-shortcuts).
+todo - dont forget android static icon config instructions
 
+[![Build Status][build-status]][build-url]
 [![NPM version][npm-image]][npm-url]
 [![Downloads][downloads-image]][npm-url]
 [![Twitter Follow][twitter-image]][twitter-url]
 
-[npm-image]:http://img.shields.io/npm/v/nativescript-3dtouch.svg
-[npm-url]:https://npmjs.org/package/nativescript-3dtouch
-[downloads-image]:http://img.shields.io/npm/dm/nativescript-3dtouch.svg
+[build-status]:https://travis-ci.org/EddyVerbruggen/nativescript-app-shortcuts.svg?branch=master
+[build-url]:https://travis-ci.org/EddyVerbruggen/nativescript-app-shortcuts
+[npm-image]:http://img.shields.io/npm/v/nativescript-app-shortcuts.svg
+[npm-url]:https://npmjs.org/package/nativescript-app-shortcuts
+[downloads-image]:http://img.shields.io/npm/dm/nativescript-app-shortcuts.svg
 [twitter-image]:https://img.shields.io/twitter/follow/eddyverbruggen.svg?style=social&label=Follow%20me
 [twitter-url]:https://twitter.com/eddyverbruggen
 
-### Use when you want to
-* add those fancy home icon actions to your iPhone app,
-* add them either statically or dynamically,
-* use those to optionally deeplink inside your app.
-
-
-<img src="screenshots/iOS screenshot - 4 quick actions.PNG" width="360"/>
-
+<img src="https://raw.githubusercontent.com/EddyVerbruggen/nativescript-app-shortcuts/master/media/iOS.png" width="360px" /> <img src="https://raw.githubusercontent.com/EddyVerbruggen/nativescript-app-shortcuts/master/media/Android.png" width="360px" />
 
 ### Supported platforms
-* iPhone 6s / 6s Plus or newer, running iOS 9 or newer
-* A simulator running the above, with a 3D Touch enabled touchpad
+* iPhone 6s / 6s Plus or newer, running iOS 9 or newer.
+* Android 7.1 or newer.
 
 ## Installation
 From the command prompt go to your app's root folder and execute:
 
 ```
-tns plugin add nativescript-3dtouch
-```
-
-And do yourself a favor by adding TypeScript support to your nativeScript app:
-
-```
-tns install typescript
-```
-
-Then open `references.d.ts` in the root of your project and add this line
-to get autocompletion and type-checking for this plugin:
-
-```js
-/// <reference path="./node_modules/nativescript-3dtouch/3dtouch.d.ts" />
+tns plugin add nativescript-app-shortcuts
 ```
 
 ## Demo app
 Want to dive in quickly? Check out [the demo app](demo)! Otherwise, continue reading.
-
-You can run the demo app from the root of the project by typing `npm run demo.ios.device` (see [`package.json`](package.json) for other commands).
 
 ## API
 
@@ -59,17 +40,17 @@ Android devices will also report `false`, so you can use this cross platform.
 ##### JavaScript
 ```js
 // require the plugin
-var ThreeDeeTouch = require("nativescript-3dtouch").ThreeDeeTouch;
+var AppShortcuts = require("nativescript-app-shortcuts").AppShortcuts;
 
 // instantiate the plugin
-var threeDeeTouch = new ThreeDeeTouch();
+var appShortcuts = new AppShortcuts();
 
-threeDeeTouch.available().then(
+appShortcuts.available().then(
   function(available) {
     if (available) {
-      console.log("This device is 3D Touch capable");
+      console.log("This device supports app shortcuts");
     } else {
-      console.log("No 3D Touch capability, ask the user to upgrade");
+      console.log("No app shortcuts capability, ask the user to upgrade :)");
     }
   }
 );
@@ -78,16 +59,16 @@ threeDeeTouch.available().then(
 ##### TypeScript
 ```typescript
 // require the plugin
-import {ThreeDeeTouch} from "nativescript-3dtouch";
+import { AppShortcuts } from "nativescript-app-shortcuts";
 
 // instantiate the plugin
-let threeDeeTouch = new ThreeDeeTouch();
+let appShortcuts = new AppShortcuts();
 
-threeDeeTouch.available().then((available) => {
+appShortcuts.available().then(available => {
   if (available) {
-    console.log("This device is 3D Touch capable");
+    console.log("This device supports app shortcuts");
   } else {
-    console.log("No 3D Touch capability, ask the user to upgrade");
+    console.log("No app shortcuts capability, ask the user to upgrade :)");
   }
 });
 ```
@@ -99,48 +80,34 @@ The `type` param (see the code sample below) is the most convenient way to relat
 
 There are two types of icons currently supported: `iconType` and `iconTemplate`.
 
-#### iconType
+#### iconType (iOS)
 A value from a [fixed list of icons which have been provided by Apple](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationShortcutIcon_Class/index.html#//apple_ref/c/tdef/UIApplicationShortcutIconType) and look great (scroll down to the Objective-C enum and look at the sample below how to use them).
 
 #### iconTemplate
-Can be used to provide your own icon. It must be a valid name of an icon template in your Assets catalog. NativeScript allows you to add the icon to the `app/App_Resources/iOS` folder. If you add a file called `Eye.png` then reference it as `Eye`. More on these images below when we discuss static actions.
+Can be used to provide your own icon. It must be a valid name of an icon template in your Assets catalog. NativeScript allows you to add the icon to the `app/App_Resources/<platform>` folder. If you add a file called `beer.png` then reference it as `beer`. More on these images below when we discuss static actions.
 
-##### JavaScript
-```js
-threeDeeTouch.configureQuickActions([
-  {
-    type: "capturePhoto",
-    title: "Snag a pic",
-    subtitle: "You have 23 snags left",
-    iconType: UIApplicationShortcutIconTypeCapturePhoto
-  },
-  {
-    type: "beer",
-    title: "Beer-tastic!",
-    subtitle: "Check in & share",
-    iconTemplate: "Beer"
-  }
-]).then(function () {
-  alert("Added 2 actions, close the app and apply pressure to the app icon to check it out!");
-}, function(errorMessage) {
-  alert(errorMessage);
-});
-```
+Ignored on iOS, if `iconType` is set as well.
 
 ##### TypeScript
 ```typescript
-threeDeeTouch.configureQuickActions([
+import { AppShortcuts } from "nativescript-app-shortcuts";
+import { isIOS } from "tns-core-modules/platform";
+
+let appShortcuts = new AppShortcuts();
+
+appShortcuts.configureQuickActions([
   {
     type: "capturePhoto",
     title: "Snag a pic",
-    subtitle: "You have 23 snags left",
-    iconType: UIApplicationShortcutIconType.CapturePhoto
+    subtitle: "You have 23 snags left", // iOS only
+    iconType: isIOS ? UIApplicationShortcutIconType.CapturePhoto : null,
+    iconTemplate: "eye" // ignored by iOS, if iconType is set as well
   },
   {
     type: "beer",
     title: "Beer-tastic!",
-    subtitle: "Check in & share",
-    iconTemplate: "Beer"
+    subtitle: "Check in & share", // iOS only
+    iconTemplate: "beer"
   }
 ]).then(() => {
   alert("Added 2 actions, close the app and apply pressure to the app icon to check it out!");
@@ -158,29 +125,33 @@ In a non-Angular NativeScript app we need to extend `app.js` or `app.ts` and imp
 then call the `setQuickActionCallback` function. So in case of `app.ts` change it from something like this:
 
 ```typescript
-import * as application from "application";
+import * as application from "tns-core-modules/application";
 application.start({ moduleName: "main-page" });
 ```
 
 To this:
 
 ```typescript
-import * as application from "application";
+import * as application from "tns-core-modules/application";
 
 // import the plugin
-import { ThreeDeeTouch } from "nativescript-3dtouch";
+import { AppShortcuts } from "nativescript-app-shortcuts";
 
 // instantiate it and call setQuickActionCallback
-new ThreeDeeTouch().setQuickActionCallback(function(shortcutItem) {
-    console.log("app was launched by shortcut type '" + shortcutItem.type + "' with title '" + shortcutItem.localizedTitle + "'");
-    // this is where you handle any specific case for the shortcut
-    if (shortcutItem.type === "beer") {
-        // this is an example of 'deeplinking' through a shortcut
-        let frames = require("ui/frame");
-        frames.topmost().navigate("beer-page");
-    } else {
-        // .. any other shortcut handling
-    }
+new AppShortcuts().setQuickActionCallback(shortcutItem => {
+  console.log(`The app was launched by shortcut type '${shortcutItem.type}'`);
+
+  // this is where you handle any specific case for the shortcut
+  if (shortcutItem.type === "beer") {
+    // this is an example of 'deeplinking' through a shortcut
+    let frames = require("ui/frame");
+    // on Android we need a little delay
+    setTimeout(() => {
+      frames.topmost().navigate("beer-page");
+    });
+  } else {
+    // .. any other shortcut handling
+  }
 });
 
 application.start({ moduleName: "main-page" });
@@ -194,24 +165,22 @@ and use `NgZone` to help Angular knowing about the route change you're performin
 import { NgZone } from "@angular/core";
 import { isIOS } from "tns-core-modules/platform";
 import { RouterExtensions } from "nativescript-angular";
-import { ThreeDeeTouch } from "nativescript-3dtouch";
+import { AppShortcuts } from "nativescript-app-shortcuts";
 
 export class AppModule {
   constructor(private routerExtensions: RouterExtensions,
               private zone: NgZone) {
 
-    if (isIOS) {
-      new ThreeDeeTouch().setQuickActionCallback(shortcutItem => {
-        console.log(`The app was launched by shortcut type '${shortcutItem.type}' with title '${shortcutItem.localizedTitle}`);
+    new AppShortcuts().setQuickActionCallback(shortcutItem => {
+  console.log(`The app was launched by shortcut type '${shortcutItem.type}'`);
 
-        // this is where you handle any specific case for the shortcut, based on its type
-        if (shortcutItem.type === "page1") {
-          this.deeplink("/page1");
-        } else if (shortcutItem.type === "page2") {
-          this.deeplink("/page2");
-        }
-      });
-    }
+      // this is where you handle any specific case for the shortcut, based on its type
+      if (shortcutItem.type === "page1") {
+        this.deeplink("/page1");
+      } else if (shortcutItem.type === "page2") {
+        this.deeplink("/page2");
+      }
+    });
   }
 
   private deeplink(to: string): void {
@@ -226,10 +195,10 @@ export class AppModule {
 
 ## Configuring Static Actions
 With `configureQuickActions` you can configure dynamic actions,
-but what if you want actions to be available immediately after the app
-was installed from the AppStore?
+but what if you want actions to be available immediately after the app as installed from the store?
 
-You can, but you need to manually edit the `.plist`.
+### iOS
+You need to manually edit the `.plist`.
 Fortunately NativeScript allows you to change this file through `app/App_Resources/iOS/Info.plist`. Anything added there is added to the final `.plist` during a build.
 
 Note that dynamic actions will never replace static actions, so if you have two static actions you can add up to two dynamic ones. Any more will be ignored.
@@ -260,8 +229,6 @@ Here's an example which you can paste anywhere in the `.plist` file:
 </array>
 ```
 
-### These XML tags deserve a bit of explanation
-
 #### UIApplicationShortcutItemIconFile
 
 The second action above uses the built-in `UIApplicationShortcutIconTypeCompose` icon, but the first one uses a custom icon: `Eye`. This expects the file `app/App_Resources/iOS/Eye.png`. According to Apple's docs this needs to be a single color, transparent, square, `35x35` icon - but that size will look pixelated on retina devices so go ahead and use a `70x70` or `105x105` icon if you please.
@@ -273,3 +240,39 @@ You can guess what those do, right? Only the title is mandatory.
 #### UIApplicationShortcutItemType
 
 This is the same as the `type` param of `configureQuickActions`, so it's what you'll receive in the callback you may have configured in `app.js` / `app.ts`  as `payload.type`. Just do something cool with that info (like routing to a specific page and loading some content).
+
+### Android
+Open `app/App_Resources/Android/AndroidManifest.xml` and add:
+
+```xml
+<activity ..> <!-- your existing NativeScript activity -->
+  <meta-data android:name="android.app.shortcuts"
+             android:resource="@xml/shortcuts" />
+</activity>
+```
+
+Add the file you referenced in `AndroidManifest.xml`: `/app/App_Resources/Android/xml/shortcuts.xml` and add:
+
+```xml
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+  <shortcut
+      android:shortcutId="compose"
+      android:enabled="true"
+      android:icon="@drawable/add"
+      android:shortcutShortLabel="@string/shortcut_short_label1"
+      android:shortcutLongLabel="@string/shortcut_long_label1"
+      android:shortcutDisabledMessage="@string/shortcut_disabled_message1">
+    <intent
+        android:action="shortcut.type.compose"
+        android:targetPackage="org.nativescript.plugindemo.appshortcuts"
+        android:targetClass="com.tns.NativeScriptActivity"/>
+    <categories android:name="android.shortcut.conversation"/>
+  </shortcut>
+</shortcuts>
+```
+
+A few notes:
+- This adds 1 static `shortcut` to your app (you can add more if you like).
+- Make sure the `action` has the `shortcut.type.` prefix. The value behind the prefix is the equivalent of the iOS `UIApplicationShortcutItemType`.
+- The `targetPackage` needs to be your app id.
+- The `targetClass` needs to be the `activity` class as mentioned in `AndroidManifest.xml`, which is `com.tns.NativeScriptApplication` by default. 

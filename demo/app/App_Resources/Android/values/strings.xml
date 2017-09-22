@@ -1,0 +1,8 @@
+<resources>
+  <string name="app_name">Shortcut demo</string>
+  <string name="title_activity_kimera">Shortcut demo</string>
+
+  <string name="shortcut_short_label1">Add</string>
+  <string name="shortcut_long_label1">Add stuff</string>
+  <string name="shortcut_disabled_message1">Adding disabled</string>
+</resources>

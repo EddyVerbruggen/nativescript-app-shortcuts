@@ -1,7 +1,7 @@
-<Page xmlns="http://www.nativescript.org/tns.xsd" loaded="pageLoaded">
-  <StackLayout cssClass="tab-content">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
+  <StackLayout class="tab-content">
     <Image margin="0" src="~/res/cheers_to_beers.jpg" />
-    <Label text="Cheers!" cssClass="title"/>
-    <Label text="You 3D Touched like a boss :)" textWrap="true"/>
+    <Label text="Cheers!" class="title"/>
+    <Label text="You deeplinked from the home icon :)" textWrap="true"/>
   </StackLayout>
 </Page>

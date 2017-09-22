@@ -1,0 +1,15 @@
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+  <shortcut
+      android:shortcutId="compose"
+      android:enabled="true"
+      android:icon="@drawable/add"
+      android:shortcutShortLabel="@string/shortcut_short_label1"
+      android:shortcutLongLabel="@string/shortcut_long_label1"
+      android:shortcutDisabledMessage="@string/shortcut_disabled_message1">
+    <intent
+        android:action="shortcut.type.compose"
+        android:targetPackage="org.nativescript.plugindemo.appshortcuts"
+        android:targetClass="com.tns.NativeScriptActivity"/>
+    <categories android:name="android.shortcut.conversation"/>
+  </shortcut>
+</shortcuts>

@@ -53,7 +53,7 @@
         </dict>
         <dict>
             <key>UIApplicationShortcutItemIconFile</key>
-            <string>Eye</string>
+            <string>eye</string>
             <key>UIApplicationShortcutItemTitle</key>
             <string>Eye C U</string>
             <key>UIApplicationShortcutItemSubtitle</key>
