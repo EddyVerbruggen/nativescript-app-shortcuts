@@ -1,7 +1,5 @@
 # NativeScript Icon Shortcuts plugin
 
-todo - dont forget android static icon config instructions
-
 [![Build Status][build-status]][build-url]
 [![NPM version][npm-image]][npm-url]
 [![Downloads][downloads-image]][npm-url]
@@ -15,7 +13,7 @@ todo - dont forget android static icon config instructions
 [twitter-image]:https://img.shields.io/twitter/follow/eddyverbruggen.svg?style=social&label=Follow%20me
 [twitter-url]:https://twitter.com/eddyverbruggen
 
-<img src="https://raw.githubusercontent.com/EddyVerbruggen/nativescript-app-shortcuts/master/media/iOS.png" width="360px" /> <img src="https://raw.githubusercontent.com/EddyVerbruggen/nativescript-app-shortcuts/master/media/Android.png" width="360px" />
+<img src="https://raw.githubusercontent.com/EddyVerbruggen/nativescript-app-shortcuts/master/media/iOS.png" width="360px" />  <img src="https://raw.githubusercontent.com/EddyVerbruggen/nativescript-app-shortcuts/master/media/Android.png" width="360px" />
 
 ### Supported platforms
 * iPhone 6s / 6s Plus or newer, running iOS 9 or newer.
