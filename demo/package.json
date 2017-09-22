@@ -9,7 +9,7 @@
     }
   },
   "dependencies": {
-    "nativescript-app-shortcuts": "file:///Users/eddyverbruggen/sandboxes/nativescript-3dtouch/src",
+    "nativescript-app-shortcuts": "../src",
     "nativescript-theme-core": "^1.0.2",
     "nativescript-unit-test-runner": "^0.3.4",
     "tns-core-modules": "^3.2.0"
