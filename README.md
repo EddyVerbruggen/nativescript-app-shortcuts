@@ -26,8 +26,11 @@ From the command prompt go to your app's root folder and execute:
 tns plugin add nativescript-app-shortcuts
 ```
 
-## Demo app
+## Demo app (XML & TypeScript)
 Want to dive in quickly? Check out [the demo app](demo)! Otherwise, continue reading.
+
+## Demo app (Angular)
+This plugin is part of the [plugin showcase app](https://github.com/EddyVerbruggen/nativescript-pluginshowcase/tree/master/app/appicon) I built using Angular.
 
 ## API
 
