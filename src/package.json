@@ -1,6 +1,6 @@
 {
   "name": "nativescript-app-shortcuts",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Add shortcut actions to your app icon.",
   "main": "app-shortcuts",
   "nativescript": {
@@ -10,8 +10,9 @@
     }
   },
   "scripts": {
+    "tsc": "tsc -skipLibCheck",
     "build": "npm i && tsc",
-    "demo.ios": "npm run preparedemo && cd ../demo && tns run ios --emulator",
+    "demo.ios": "npm i && npm run tsc && cd ../demo && tns run ios --syncAllFiles",
     "demo.ios.device": "npm run preparedemo && cd ../demo && tns platform remove ios && tns run ios",
     "demo.android": "npm run preparedemo && cd ../demo && tns platform remove android && tns run android --emulator",
     "demo.android.device": "npm run preparedemo && cd ../demo && tns platform remove android && tns run android",
@@ -55,9 +56,9 @@
   "homepage": "https://github.com/EddyVerbruggen/nativescript-app-shortcuts",
   "readmeFilename": "README.md",
   "devDependencies": {
-    "tns-core-modules": "^3.0.0",
-    "tns-platform-declarations": "^3.0.0",
-    "typescript": "~2.3.0",
+    "tns-core-modules": "~4.0.0",
+    "tns-platform-declarations": "~4.0.0",
+    "typescript": "~2.8.0",
     "tslint": "^5.0.0"
   }
 }

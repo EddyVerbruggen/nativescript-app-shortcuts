@@ -34,24 +34,31 @@ export class AppShortcuts implements AppShortcutsAPI {
   // caching for efficiency
   private availability = null;
 
-  private avail() {
-    if (this.availability === null) {
-      let avail = false;
+  public available(): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+
+      if (this.availability !== null) {
+        resolve(this.availability);
+        return;
+      }
 
       // iOS 9 added 3D Touch capability
       if (iOSUtils.MajorVersion >= 9) {
         // .. but not all devices running iOS 9 support it
-        avail = UIForceTouchCapability.Available === iOSApplication.nativeApp.keyWindow.rootViewController.traitCollection.forceTouchCapability;
+        if (iOSApplication.nativeApp.keyWindow === null) {
+          // (especially) in Angular apps, this might run too soon. Wrapping it in a timeout solves that issue.
+          setTimeout(() => {
+            this.availability = UIForceTouchCapability.Available === iOSApplication.nativeApp.keyWindow.rootViewController.traitCollection.forceTouchCapability;
+            resolve(this.availability);
+          });
+        } else {
+          this.availability = UIForceTouchCapability.Available === iOSApplication.nativeApp.keyWindow.rootViewController.traitCollection.forceTouchCapability;
+          resolve(this.availability);
+        }
+      } else {
+        this.availability = false;
+        resolve(this.availability);
       }
-
-      this.availability = avail;
-    }
-    return this.availability;
-  }
-
-  public available(): Promise<boolean> {
-    return new Promise((resolve, reject) => {
-      resolve(this.avail());
     });
   }
 
@@ -65,34 +72,36 @@ export class AppShortcuts implements AppShortcutsAPI {
 
   public configureQuickActions(actions: Array<QuickAction>): Promise<any> {
     return new Promise((resolve, reject) => {
-      if (!this.avail()) {
-        reject("3D Touch not available");
-        return;
-      }
-
-      let items = [];
-
-      actions.map(action => {
-        let uiApplicationShortcutIcon = null;
-
-        if (action.iconType) {
-          uiApplicationShortcutIcon = UIApplicationShortcutIcon.iconWithType(action.iconType);
-        } else if (action.iconTemplate) {
-          uiApplicationShortcutIcon = UIApplicationShortcutIcon.iconWithTemplateImageName(action.iconTemplate);
+      this.available().then(avail => {
+        if (!avail) {
+          reject("3D Touch not available");
+          return;
         }
 
-        items.push(
-            UIApplicationShortcutItem.alloc().initWithTypeLocalizedTitleLocalizedSubtitleIconUserInfo(
-                action.type,
-                action.title,
-                action.subtitle,
-                uiApplicationShortcutIcon,
-                null));
+        const items = [];
+
+        actions.map(action => {
+          let uiApplicationShortcutIcon = null;
+
+          if (action.iconType) {
+            uiApplicationShortcutIcon = UIApplicationShortcutIcon.iconWithType(action.iconType);
+          } else if (action.iconTemplate) {
+            uiApplicationShortcutIcon = UIApplicationShortcutIcon.iconWithTemplateImageName(action.iconTemplate);
+          }
+
+          items.push(
+              UIApplicationShortcutItem.alloc().initWithTypeLocalizedTitleLocalizedSubtitleIconUserInfo(
+                  action.type,
+                  action.title,
+                  action.subtitle,
+                  uiApplicationShortcutIcon,
+                  null));
+        });
+
+        iOSApplication.nativeApp.shortcutItems = items;
+
+        resolve();
       });
-
-      iOSApplication.nativeApp.shortcutItems = items;
-
-      resolve();
     });
   }
 }
