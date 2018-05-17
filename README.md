@@ -82,7 +82,7 @@ The `type` param (see the code sample below) is the most convenient way to relat
 There are two types of icons currently supported: `iconType` and `iconTemplate`.
 
 #### iconType (iOS)
-A value from a [fixed list of icons which have been provided by Apple](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationShortcutIcon_Class/index.html#//apple_ref/c/tdef/UIApplicationShortcutIconType) and look great (scroll down to the Objective-C enum and look at the sample below how to use them).
+A value from a [fixed list of icons which have been provided by Apple](https://developer.apple.com/ios/human-interface-guidelines/icons-and-images/system-icons/#home-screen-quick-action-icons) and look great (click the value in the 'API' column to look up the Objective-C name, and look at the sample below how to use them).
 
 #### iconTemplate
 Can be used to provide your own icon. It must be a valid name of an icon template in your Assets catalog. NativeScript allows you to add the icon to the `app/App_Resources/<platform>` folder. If you add a file called `beer.png` then reference it as `beer`. More on these images below when we discuss static actions.
