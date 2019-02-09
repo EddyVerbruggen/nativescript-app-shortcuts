@@ -2,17 +2,17 @@
   "nativescript": {
     "id": "org.nativescript.plugindemo.appshortcuts",
     "tns-ios": {
-      "version": "4.0.1"
+      "version": "5.1.0"
     },
     "tns-android": {
-      "version": "4.0.1"
+      "version": "5.1.0"
     }
   },
   "dependencies": {
-    "nativescript-app-shortcuts": "../src",
+    "nativescript-app-shortcuts": "file:../src",
     "nativescript-theme-core": "^1.0.2",
     "nativescript-unit-test-runner": "^0.3.4",
-    "tns-core-modules": "~4.0.0"
+    "tns-core-modules": "~5.1.2"
   },
   "devDependencies": {
     "awesome-typescript-loader": "~3.1.3",
@@ -26,10 +26,11 @@
     "karma-nativescript-launcher": "^0.4.0",
     "lazy": "1.0.11",
     "nativescript-css-loader": "~0.26.0",
-    "nativescript-dev-typescript": "^0.7.1",
+    "nativescript-dev-typescript": "~0.7.9",
+    "nativescript-dev-webpack": "~0.19.2",
     "raw-loader": "~0.5.1",
     "resolve-url-loader": "~2.1.0",
-    "tns-platform-declarations": "~4.0.0",
+    "tns-platform-declarations": "~5.1.2",
     "typescript": "~2.8.0"
   }
 }
