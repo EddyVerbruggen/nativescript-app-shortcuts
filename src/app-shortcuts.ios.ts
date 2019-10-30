@@ -42,6 +42,12 @@ export class AppShortcuts implements AppShortcutsAPI {
         return;
       }
 
+      // With iOS 13 probably any iOS device supports this feature, because 3D Touch is no longer required
+      if (iOSUtils.MajorVersion >= 13) {
+        resolve(true);
+        return;
+      }
+
       // iOS 9 added 3D Touch capability
       if (iOSUtils.MajorVersion >= 9) {
         // .. but not all devices running iOS 9 support it
