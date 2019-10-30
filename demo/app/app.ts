@@ -9,7 +9,7 @@ new AppShortcuts().setQuickActionCallback(shortcutItem => {
   if (shortcutItem.type === "beer") {
     // this is an example of 'deeplinking' through a shortcut
     const frameModule = require("tns-core-modules/ui/frame");
-    // on Android we need a little delay
+    // not sure this works on Android
     setTimeout(() => {
       frameModule.getFrameById("appRootFrame") // see app-root.xml
           .navigate("beer-page");
