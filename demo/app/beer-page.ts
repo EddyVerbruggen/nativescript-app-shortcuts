@@ -1,6 +1,6 @@
-import * as observable from "tns-core-modules/data/observable";
+import { EventData } from "@nativescript/core";
 
 // Event handler for Page "loaded" event attached in beer-page.xml
-export function pageLoaded(args: observable.EventData) {
+export function pageLoaded(args: EventData) {
   console.log("--- beers page loaded!");
 }

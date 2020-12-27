@@ -1,6 +1,5 @@
-import { Observable } from "tns-core-modules/data/observable";
+import { Observable, isIOS } from "@nativescript/core";
 import { AppShortcuts } from "nativescript-app-shortcuts";
-import { isIOS } from "tns-core-modules/platform";
 
 declare const UIApplicationShortcutIconType;
 

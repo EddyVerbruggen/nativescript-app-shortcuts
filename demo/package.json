@@ -1,26 +1,24 @@
 {
-  "nativescript": {
-    "id": "org.nativescript.plugindemo.appshortcuts",
-    "tns-ios": {
-      "version": "6.1.1"
-    },
-    "tns-android": {
-      "version": "6.1.2"
-    }
-  },
   "dependencies": {
+    "@nativescript/core": "7.0.0",
+    "@nativescript/unit-test-runner": "^1.0.2",
+    "@nativescript/webpack": "3.0.0",
     "nativescript-app-shortcuts": "file:../src",
     "nativescript-theme-core": "~1.0.6",
-    "nativescript-unit-test-runner": "0.7.0",
-    "tns-core-modules": "~6.1.2"
+    "nativescript-unit-test-runner": "0.7.0"
   },
   "devDependencies": {
-    "@types/jasmine": "~2.8.0",
-    "nativescript-dev-webpack": "~1.2.1",
-    "tns-platform-declarations": "~6.1.2",
-    "typescript": "~3.4.5"
+    "@nativescript/android": "7.0.1",
+    "@nativescript/ios": "7.0.0",
+    "@types/jasmine": "3.6.2",
+    "karma": "5.2.3",
+    "karma-jasmine": "4.0.1",
+    "karma-nativescript-launcher": "0.4.0",
+    "karma-webpack": "3.0.5",
+    "typescript": "3.9.7"
   },
   "scripts": {
     "build.plugin": "cd ../src && npm run build"
-  }
+  },
+  "main": "app.js"
 }
