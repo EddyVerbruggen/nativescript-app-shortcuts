@@ -1,6 +1,8 @@
-import { ios as iOSUtils } from "tns-core-modules/utils/utils";
-import { ios as iOSApplication } from "tns-core-modules/application";
+import { Application, Utils } from "@nativescript/core";
 import { AppShortcutsAPI, LaunchQuickAction, QuickAction } from "./app-shortcuts.common";
+
+const iOSApplication = Application.ios;
+const iOSUtils = Utils.ios;
 
 let quickActionCallback: (data: LaunchQuickAction) => void = null;
 let lastQuickAction: any = null;
@@ -13,6 +15,7 @@ const callback = function (application, shortcutItem, completionHandler) {
   }
 };
 
+@NativeClass()
 class AppShortcutsUIApplicationDelegate extends UIResponder implements UIApplicationDelegate {
   public static ObjCProtocols = [UIApplicationDelegate];
 
@@ -77,7 +80,7 @@ export class AppShortcuts implements AppShortcutsAPI {
   }
 
   public configureQuickActions(actions: Array<QuickAction>): Promise<any> {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       this.available().then(avail => {
         if (!avail) {
           reject("3D Touch not available");

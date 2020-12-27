@@ -11,7 +11,10 @@ module.exports = function (config) {
 
 
     // list of files / patterns to load in the browser
-    files: ['app/tests/**/*.*'],
+    files: [
+      'app/tests/**/*.ts',
+      'app/tests/**/*.js'
+    ],
 
 
     // list of files to exclude
@@ -99,6 +102,7 @@ function setWebpack(config, options) {
     const env = {};
     env[config.platform] = true;
     env.sourceMap = config.debugBrk;
+    env.appPath = config.appPath;
     options.webpack = require('./webpack.config')(env);
     delete options.webpack.entry;
     delete options.webpack.output.libraryTarget;

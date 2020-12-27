@@ -1,6 +1,5 @@
 import { AppShortcutsAPI, LaunchQuickAction, QuickAction } from "./app-shortcuts.common";
-import * as application from "tns-core-modules/application";
-import { ad } from "tns-core-modules/utils/utils";
+import { Application, Utils } from "@nativescript/core";
 
 declare const android: any;
 
@@ -33,7 +32,7 @@ const SHORTCUT_PREFIX = "shortcut.type.";
     }
   };
 
-  application.on("launch", (args) => iconHandler(args));
+  Application.on("launch", (args) => iconHandler(args));
 })();
 
 export class AppShortcuts implements AppShortcutsAPI {
@@ -49,7 +48,7 @@ export class AppShortcuts implements AppShortcutsAPI {
   }
 
   configureQuickActions(actions: Array<QuickAction>): Promise<any> {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       try {
         if (!this.supported()) {
           reject("Not supported on this API level. Requires minimum of API level 25 (Android 7.1).");
@@ -59,27 +58,27 @@ export class AppShortcuts implements AppShortcutsAPI {
         const shortcuts = new java.util.ArrayList();
 
         actions.map((action, i) => {
-          const intent = new android.content.Intent(application.android.context, application.android.foregroundActivity.getClass());
+          const intent = new android.content.Intent(Application.android.context, Application.android.foregroundActivity.getClass());
           intent.setAction(SHORTCUT_PREFIX + action.type);
 
-          const shortcutBuilder = new android.content.pm.ShortcutInfo.Builder(application.android.context, `id${i}`)
+          const shortcutBuilder = new android.content.pm.ShortcutInfo.Builder(Application.android.context, `id${i}`)
               .setShortLabel(action.title)
               .setLongLabel(action.title) // TODO add property some day
               .setIntent(intent);
 
           if (action.iconTemplate) {
-            let res = ad.getApplicationContext().getResources();
-            let identifier = res.getIdentifier(action.iconTemplate, "drawable", ad.getApplication().getPackageName());
+            let res = Utils.ad.getApplicationContext().getResources();
+            let identifier = res.getIdentifier(action.iconTemplate, "drawable", Utils.ad.getApplication().getPackageName());
             if (identifier === 0) {
               console.log(`No icon found for this device density for icon '${action.iconTemplate}'. Falling back to the default icon.`);
             } else {
-              shortcutBuilder.setIcon(android.graphics.drawable.Icon.createWithResource(application.android.context, identifier));
+              shortcutBuilder.setIcon(android.graphics.drawable.Icon.createWithResource(Application.android.context, identifier));
             }
           }
           shortcuts.add(shortcutBuilder.build());
         });
 
-        const shortcutManager = application.android.context.getSystemService(android.content.pm.ShortcutManager.class);
+        const shortcutManager = Application.android.context.getSystemService(android.content.pm.ShortcutManager.class);
         shortcutManager.setDynamicShortcuts(shortcuts);
         resolve();
       } catch (e) {

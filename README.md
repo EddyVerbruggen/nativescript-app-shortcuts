@@ -17,13 +17,19 @@
 
 ### Supported platforms
 * iPhone 6s / 6s Plus or newer, running iOS 9 or newer.
-* Android 7.1 or newer.
+* Android 7.1 (API level 25) or newer.
 
 ## Installation
 From the command prompt go to your app's root folder and execute:
 
+NativesScript 7.x
 ```
 tns plugin add nativescript-app-shortcuts
+```
+
+NativesScript 6.x
+```
+tns plugin add nativescript-app-shortcuts@2.2.0
 ```
 
 ## Demo app (XML & TypeScript)
