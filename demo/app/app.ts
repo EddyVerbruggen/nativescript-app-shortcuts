@@ -7,8 +7,10 @@ new AppShortcuts().setQuickActionCallback(shortcutItem => {
 
   // this is where you handle any specific case for the shortcut
   if (shortcutItem.type === "beer") {
+    setTimeout(() => {
       Frame.getFrameById("appRootFrame") // see app-root.xml
           .navigate("beer-page");
+    });
   } else {
     // .. any other shortcut handling
   }
