@@ -1,4 +1,4 @@
-import { NativeScriptConfig } from '@nativescript/core'
+import { NativeScriptConfig } from '@nativescript/core';
 
 export default {
   id: 'org.nativescript.plugindemo.appshortcuts',
