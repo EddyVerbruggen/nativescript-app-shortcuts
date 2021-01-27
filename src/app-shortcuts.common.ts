@@ -45,6 +45,6 @@ export interface LaunchQuickAction {
 
 export interface AppShortcutsAPI {
   available(): Promise<boolean>;
-  configureQuickActions(actions: Array<QuickAction>): Promise<any>;
+  configureQuickActions(actions: Array<QuickAction>): Promise<void>;
   setQuickActionCallback(callback: (data: LaunchQuickAction) => void): void;
 }

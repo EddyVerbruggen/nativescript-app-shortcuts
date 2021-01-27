@@ -47,7 +47,7 @@ export class AppShortcuts implements AppShortcutsAPI {
     });
   }
 
-  configureQuickActions(actions: Array<QuickAction>): Promise<any> {
+  configureQuickActions(actions: Array<QuickAction>): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       try {
         if (!this.supported()) {

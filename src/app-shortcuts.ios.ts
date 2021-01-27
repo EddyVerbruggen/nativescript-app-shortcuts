@@ -7,7 +7,7 @@ const iOSUtils = Utils.ios;
 let quickActionCallback: (data: LaunchQuickAction) => void = null;
 let lastQuickAction: any = null;
 
-const callback = function (application, shortcutItem, completionHandler) {
+const callback = (application, shortcutItem, completionHandler) => {
   if (quickActionCallback !== null) {
     quickActionCallback(shortcutItem);
   } else {
@@ -38,7 +38,7 @@ export class AppShortcuts implements AppShortcutsAPI {
   private availability = null;
 
   public available(): Promise<boolean> {
-    return new Promise((resolve, reject) => {
+    return new Promise<boolean>((resolve, reject) => {
 
       if (this.availability !== null) {
         resolve(this.availability);
@@ -79,7 +79,7 @@ export class AppShortcuts implements AppShortcutsAPI {
     }
   }
 
-  public configureQuickActions(actions: Array<QuickAction>): Promise<any> {
+  public configureQuickActions(actions: Array<QuickAction>): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       this.available().then(avail => {
         if (!avail) {
