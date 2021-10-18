@@ -3,6 +3,12 @@
   "version": "3.0.0",
   "description": "Add shortcut actions to your app icon.",
   "main": "app-shortcuts",
+  "nativescript": {
+    "platforms": {
+      "android": "7.0.0",
+      "ios": "7.0.0"
+    }
+  },
   "scripts": {
     "ts.patch": "ts-patch install",
     "tsc": "tsc -skipLibCheck",
